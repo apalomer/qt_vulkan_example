@@ -3,6 +3,7 @@ add_library(triangle_renderer SHARED
   trianglerenderer.h
 )
 target_link_libraries(triangle_renderer Qt5::Core Qt5::Widgets ${Vulkan_LIBS})
+target_compile_definitions(triangle_renderer PRIVATE TRIANGLERENDERER)
 
 install(TARGETS triangle_renderer
   EXPORT Qt_Vulkan_Examples

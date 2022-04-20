@@ -50,7 +50,17 @@
 
 #include <QVulkanWindow>
 
-class TriangleRenderer : public QVulkanWindowRenderer
+#if defined(_WIN32) || defined(_WIN64) || defined(WINCE) || defined(__MINGW32__)
+#ifdef TRIANGLERENDERER
+#define TRIANGLERENDEREREXPORT __declspec(dllexport)
+#else
+#define TRIANGLERENDEREREXPORT __declspec(dllimport)
+#endif
+#else
+#define TRIANGLERENDEREREXPORT
+#endif
+
+class TRIANGLERENDEREREXPORT TriangleRenderer : public QVulkanWindowRenderer
 {
 public:
     TriangleRenderer(QVulkanWindow *w, bool msaa = false);
