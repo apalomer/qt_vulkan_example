@@ -2,17 +2,21 @@
 cmake_minimum_required (VERSION 3.0)
 project (qt_vulkan_example CXX)
 
+set(CMAKE_BIN "${CMAKE_BINARY_DIR}/bin")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BIN})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BIN})
+set(CMAKE_LIB "${CMAKE_BINARY_DIR}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_LIB})
+set(CMAKE_SHARED_LIBRARY_PREFIX "")
+set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin")
+set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+
 # Find LIbrary
 find_package(Qt5 5.10.0 REQUIRED COMPONENTS Core Gui Widgets)
-# Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-# Instruct CMake to run moc automatically when needed
 set(CMAKE_AUTOMOC ON)
-# Create code from a list of Qt designer ui files
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 
-# Vulkan
-find_package(Vulkan ${Vulkan_MIN_VERSION} REQUIRED)
-include_directories(${Vulkan_INCLUDE_DIR})
-
+# Add code
 add_subdirectory(src)

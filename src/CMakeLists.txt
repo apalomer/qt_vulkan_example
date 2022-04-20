@@ -1,2 +1,6 @@
-add_executable(main main.cpp hellovulkanwindow.cpp hellovulkanwindow.h)
-target_link_libraries(main Qt5::Core Qt5::Widgets ${Vulkan_LIBS})
+add_subdirectory(shared)
+add_subdirectory(hellovulkancubes)
+add_subdirectory(hellovulkantexture)
+add_subdirectory(hellovulkantriangle)
+add_subdirectory(hellovulkanwidget)
+add_subdirectory(hellovulkanwindow)
