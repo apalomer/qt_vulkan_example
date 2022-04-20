@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.0)
 project (qt_vulkan_example CXX)
 
 # Find LIbrary
-find_package(Qt5 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt5 5.10.0 REQUIRED COMPONENTS Core Gui Widgets)
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed
