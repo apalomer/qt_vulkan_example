@@ -65,6 +65,7 @@ class TRIANGLERENDEREREXPORT TriangleRenderer : public QVulkanWindowRenderer
 public:
     TriangleRenderer(QVulkanWindow *w, bool msaa = false);
 
+    void preInitResources() override;
     void initResources() override;
     void initSwapChainResources() override;
     void releaseSwapChainResources() override;

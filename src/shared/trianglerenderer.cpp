@@ -110,6 +110,11 @@ VkShaderModule TriangleRenderer::createShader(const QString &name)
     return shaderModule;
 }
 
+void TriangleRenderer::preInitResources()
+{
+  QVulkanWindowRenderer::preInitResources();
+}
+
 void TriangleRenderer::initResources()
 {
     qDebug("initResources");

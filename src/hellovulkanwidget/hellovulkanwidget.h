@@ -48,8 +48,9 @@
 **
 ****************************************************************************/
 
-#include "../shared/trianglerenderer.h"
 #include <QWidget>
+
+#include "../shared/trianglerenderer.h"
 
 class VulkanWindow;
 
@@ -61,40 +62,40 @@ QT_END_NAMESPACE
 
 class MainWindow : public QWidget
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit MainWindow(VulkanWindow *w, QPlainTextEdit *logWidget);
+  explicit MainWindow(VulkanWindow *w, QPlainTextEdit *logWidget);
 
 public slots:
-    void onVulkanInfoReceived(const QString &text);
-    void onFrameQueued(int colorValue);
-    void onGrabRequested();
+  void onVulkanInfoReceived(const QString &text);
+  void onFrameQueued(int colorValue);
+  void onGrabRequested();
 
 private:
-    VulkanWindow *m_window;
-    QTabWidget *m_infoTab;
-    QPlainTextEdit *m_info;
-    QLCDNumber *m_number;
+  VulkanWindow *m_window;
+  QTabWidget *m_infoTab;
+  QPlainTextEdit *m_info;
+  QLCDNumber *m_number;
 };
 
 class VulkanRenderer : public TriangleRenderer
 {
 public:
-    VulkanRenderer(VulkanWindow *w);
+  VulkanRenderer(VulkanWindow *w);
 
-    void initResources() override;
-    void startNextFrame() override;
+  void initResources() override;
+  void startNextFrame() override;
 };
 
 class VulkanWindow : public QVulkanWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    QVulkanWindowRenderer *createRenderer() override;
+  QVulkanWindowRenderer *createRenderer() override;
 
 signals:
-    void vulkanInfoReceived(const QString &text);
-    void frameQueued(int colorValue);
+  void vulkanInfoReceived(const QString &text);
+  void frameQueued(int colorValue);
 };
