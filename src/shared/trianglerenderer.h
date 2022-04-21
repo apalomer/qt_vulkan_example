@@ -49,48 +49,42 @@
 ****************************************************************************/
 
 #include <QVulkanWindow>
-
-#if defined(_WIN32) || defined(_WIN64) || defined(WINCE) || defined(__MINGW32__)
-#ifdef TRIANGLERENDERER
-#define TRIANGLERENDEREREXPORT __declspec(dllexport)
-#else
-#define TRIANGLERENDEREREXPORT __declspec(dllimport)
-#endif
-#else
-#define TRIANGLERENDEREREXPORT
-#endif
+#include "misc.h"
+#include "qthellowvulkanexampleexport.h"
 
 class TRIANGLERENDEREREXPORT TriangleRenderer : public QVulkanWindowRenderer
 {
 public:
-    TriangleRenderer(QVulkanWindow *w, bool msaa = false);
+  TriangleRenderer(QVulkanWindow *w, bool msaa = false);
 
-    void preInitResources() override;
-    void initResources() override;
-    void initSwapChainResources() override;
-    void releaseSwapChainResources() override;
-    void releaseResources() override;
+  void preInitResources() override;
+  void initResources() override;
+  void initSwapChainResources() override;
+  void releaseSwapChainResources() override;
+  void releaseResources() override;
 
-    void startNextFrame() override;
+  void startNextFrame() override;
 
 protected:
-    VkShaderModule createShader(const QString &name);
+  VkShaderModule createShader(const QString &name);
 
-    QVulkanWindow *m_window;
-    QVulkanDeviceFunctions *m_devFuncs;
+  QVulkanWindow *m_window;
+  QVulkanDeviceFunctions *m_devFuncs;
 
-    VkDeviceMemory m_bufMem = VK_NULL_HANDLE;
-    VkBuffer m_buf = VK_NULL_HANDLE;
-    VkDescriptorBufferInfo m_uniformBufInfo[QVulkanWindow::MAX_CONCURRENT_FRAME_COUNT];
+  VkDeviceMemory m_bufMem = VK_NULL_HANDLE;
+  VkBuffer m_buf = VK_NULL_HANDLE;
+  VkDescriptorBufferInfo m_uniformBufInfo[QVulkanWindow::MAX_CONCURRENT_FRAME_COUNT];
 
-    VkDescriptorPool m_descPool = VK_NULL_HANDLE;
-    VkDescriptorSetLayout m_descSetLayout = VK_NULL_HANDLE;
-    VkDescriptorSet m_descSet[QVulkanWindow::MAX_CONCURRENT_FRAME_COUNT];
+  VkDescriptorPool m_descPool = VK_NULL_HANDLE;
+  VkDescriptorSetLayout m_descSetLayout = VK_NULL_HANDLE;
+  VkDescriptorSet m_descSet[QVulkanWindow::MAX_CONCURRENT_FRAME_COUNT];
 
-    VkPipelineCache m_pipelineCache = VK_NULL_HANDLE;
-    VkPipelineLayout m_pipelineLayout = VK_NULL_HANDLE;
-    VkPipeline m_pipeline = VK_NULL_HANDLE;
+  VkPipelineCache m_pipelineCache = VK_NULL_HANDLE;
+  VkPipelineLayout m_pipelineLayout = VK_NULL_HANDLE;
+  VkPipeline m_pipeline = VK_NULL_HANDLE;
 
-    QMatrix4x4 m_proj;
-    float m_rotation = 0.0f;
+  QMatrix4x4 m_proj;
+  float m_rotation = 0.0f;
+
+  FPSCounter fps_counter;
 };

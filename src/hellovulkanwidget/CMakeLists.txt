@@ -4,7 +4,7 @@ add_executable(hello_vulkan_widget
   hellovulkanwidget.qrc
   main.cpp
 )
-target_link_libraries(hello_vulkan_widget Qt5::Core Qt5::Widgets ${Vulkan_LIBS} triangle_renderer)
+target_link_libraries(hello_vulkan_widget Qt5::Core Qt5::Widgets ${Vulkan_LIBS} qt_hello_vulkan_example_lib)
 
 install(TARGETS hello_vulkan_widget
   EXPORT Qt_Vulkan_Examples
