@@ -105,7 +105,13 @@ int main(int argc, char *argv[])
   vulkan_window->setVulkanInstance(&inst);
 
   // Select physical device
-  vulkan_window->setPhysicalDeviceIndex(selectPhysicalDevice(vulkan_window));
+  if (argc > 1)
+  {
+    qDebug() << "Using custom device: " << std::atoi(argv[1]);
+    vulkan_window->setPhysicalDeviceIndex(std::atoi(argv[1]));
+  }
+  else
+    vulkan_window->setPhysicalDeviceIndex(selectPhysicalDevice(vulkan_window));
 
   MainWindow mainWindow(vulkan_window, messageLogWidget.data());
   QObject::connect(vulkan_window, &VulkanWindow::vulkanInfoReceived, &mainWindow, &MainWindow::onVulkanInfoReceived);
